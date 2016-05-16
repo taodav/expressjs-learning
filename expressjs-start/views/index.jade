@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}, #{name}
+
+  a(href="/poo") go here
+
+  h2 give me your info please
+  form(name="send-user", action="/poo", method="post")
+    input(type="text", name="name", placeholder="name")
+    br
+    input(type="text", name="email", placeholder="email")
+    input(type="submit", value="Send")
