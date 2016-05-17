@@ -1,14 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}, #{name}
 
-  a(href="/poo") go here
 
-  h2 give me your info please
-  form(name="send-user", action="/poo", method="post")
-    input(type="text", name="name", placeholder="name")
-    br
-    input(type="text", name="email", placeholder="email")
-    input(type="submit", value="Send")
+  div.error
+
+  h2 Type your email below
+  div.container
+    form.email(name="send-user", action="/email", method="post")
+      input.form-control(type="email", name="from", placeholder="Your Email")
+      input.form-control(type="text", name="to", placeholder="Receiving email address")
+      input.form-control(type="text", name="subject", placeholder="Subject")
+      textarea.form-control(rows="4", name="text", placeholder="body")
+      input.btn.btn-primary(type="submit", value="Send")
+
