@@ -12,6 +12,7 @@ var model = require('./models/model')
 
 var app = express();
 
+//https://github.com/sebabelmar/dbc_nem_api/blob/master/app.js
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // app.set('models', path.join(__dirname, 'models')
