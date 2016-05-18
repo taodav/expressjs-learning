@@ -14,3 +14,13 @@ block content
       textarea.form-control(rows="4", name="text", placeholder="body")
       input.btn.btn-primary(type="submit", value="Send")
 
+form(action='/users', method='post')
+  p
+    label(for='user[name]') Title:
+    input(type='text', name='user[username]', placeholder='Username')
+  p
+    label(for='user[email]') Email:
+    input(type='text', name='user[email]', value='Email')
+  p
+    input(type='submit', value=text.title ? 'Update' : 'Register')
+

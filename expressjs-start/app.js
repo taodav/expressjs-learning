@@ -4,18 +4,20 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-require('dotenv').config();
+var dotenv = require('dotenv').config();
+var mongoose = require('mongoose')
+var User = require('./app/models/user')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var model = require('./models/model')
+
+mongoose.connect('mongodb://localhost/empMail')
 
 var app = express();
 
 //https://github.com/sebabelmar/dbc_nem_api/blob/master/app.js
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('models', path.join(__dirname, 'models')
 app.set('view engine', 'jade');
 
 
@@ -23,7 +25,7 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
