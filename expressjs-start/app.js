@@ -5,13 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv').config();
-var mongoose = require('mongoose')
-var User = require('./app/models/user')
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-mongoose.connect('mongodb://localhost/empMail')
+// mongoose.connect('mongodb://localhost/empMail')
 
 var app = express();
 
@@ -27,6 +26,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+// app.use(express.cookieSession())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);

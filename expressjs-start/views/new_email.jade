@@ -2,13 +2,54 @@ extends layout
 
 block content
 
-  h2 Your email
+  h2 Profile:
   div.container
-    p Here is your email:
-    dl.dl-horizontal
-      dt email
-      dd= email
-      dt subject
-      dd= subject
-      dt text
-      dd= text
+    form.email(name="send-user", action="/mail", method="post")
+      input.form-control(type="email", name="from", placeholder="Your Email" value=info.sender)
+      input.form-control(type="text", name="to", placeholder="Receiving email address" value=info.receiver)
+      input.form-control(type="text", name="subject", placeholder="Subject" value=info.subject)
+      textarea.form-control(rows="4", name="text", placeholder="body" )= info.body
+      input.btn.btn-primary(type="submit", value="Send")
+
+    //- form.email(name="send-user", action="/email", method="post")
+    //-   input.btn.btn-primary(type="submit", value="Analyze Again")
+    hr
+    div.container
+      p Text analysis for entire document:
+      table.table
+          thead
+            tr
+              th Tone Name
+              th Tone Score
+          each val in document_tone.tone_categories
+            tbody
+              each name in val.tones
+                tr
+                  td= name.tone_name
+                  td= name.score.toFixed(2)
+    hr
+    div.container
+      each val in sentences_tone
+        p Text analysis for:
+        p= val.text
+        table.table
+          thead
+            tr
+              th Tone Name
+              th Tone Score
+          tbody
+            each name in val.tone_categories[1].tones
+              tr
+                td= name.tone_name
+                td= name.score.toFixed(2)
+            br
+            each name in val.tone_categories[0].tones
+              tr
+                td= name.tone_name
+                td= name.score.toFixed(2)
+            br
+            each name in val.tone_categories[2].tones
+              tr
+                td= name.tone_name
+                td= name.score.toFixed(2)
+      hr
