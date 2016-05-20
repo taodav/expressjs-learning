@@ -63,7 +63,7 @@ router.post('/email', function(req, res, next){
 
 router.get('/mail/:id', function(req, res, next){
   Mail.findOne({_id: req.params.id}, function(err, docs){
-    console.log(docs.tone[0])
+    var tones = []
       res.render('emails/new_email', {info: docs, sentences_tone: docs.tone[0].sentences_tone, document_tone: docs.tone[0].document_tone})
   })
 
