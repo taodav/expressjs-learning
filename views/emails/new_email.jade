@@ -5,7 +5,7 @@ block content
   h2 Profile:
   div.container
     form.email(name="send-user", action="/mail", method="post")
-      input.form-control(type="email", name="from", placeholder="Your Email" value=info.sender)
+      input.form-control(type="hidden", name="from", value=info.sender)
       input.form-control(type="text", name="to", placeholder="Receiving email address" value=info.receiver)
       input.form-control(type="text", name="subject", placeholder="Subject" value=info.subject)
       textarea.form-control(rows="4", name="text", placeholder="body" )= info.body
@@ -28,7 +28,7 @@ block content
                   td= name.tone_name
                   td= name.score.toFixed(2)
     hr
-    if sentences_tone
+    if sentences
       div.container
         each val in sentences_tone
           p Text analysis for:

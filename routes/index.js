@@ -18,7 +18,13 @@ router.get('/', function(req, res, next){
 })
 
 router.get('/email/new', function(req, res, next) {
-  res.render('users/index', { title: 'Express', name: 'David'});
+  var user = User.findOne({_id: req.session.id}, function(err, docs){
+    if (err){
+      console.log(err)
+    } else {
+      res.render('users/index', { email: docs.id });
+    }
+  })
 });
 
 router.post('/email', function(req, res, next){
@@ -67,7 +73,7 @@ router.post('/mail', function(req, res, next){
   var data = req.body
   sendgrid.send(data, function(err, json) {
     if (err) { return console.error(err); }
-    else {res.render('sent')}
+    else {res.render('emails/sent')}
     console.log(json);
   });
 })

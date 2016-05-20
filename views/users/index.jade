@@ -10,7 +10,7 @@ block content
 	h2 Type your email below
 	div.container
 		form.email(name="send-user", action="/email", method="post")
-			input.form-control(type="email", name="from", placeholder="Your Email")
+			input.form-control(type="hidden", name="from", value=email)
 			input.form-control(type="text", name="to", placeholder="Receiving email address")
 			input.form-control(type="text", name="subject", placeholder="Subject")
 			textarea.form-control(rows="4", name="text", placeholder="body")
