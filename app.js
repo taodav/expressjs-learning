@@ -51,6 +51,9 @@ app.dynamicHelpers({
   session: function(req, res) {
     return req.session
   },
+  googleClient: function(req, res){
+    return process.env.GOOGLE_CLIENT
+  },
   currentUser: function(req, res){return User.findOne({_id: req.params.id }, function(err, docs){return docs
   })}
 })

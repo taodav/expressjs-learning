@@ -8,6 +8,9 @@ html
     script(src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js", integrity="sha384-XXXXXXXX", crossorigin="anonymous")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js", type)
     script(src='/javascripts/application.js')
+    meta(name="google-signin-scope" content="profile email")
+    meta(name="google-signin-client_id" content=googleClient)
+    script(src="https://apis.google.com/js/platform.js" async defer)
 
   block body
     nav.navbar.navbar-inverse.navbar-fixed-top
@@ -30,31 +33,16 @@ html
                 a(href='/mail') Drafts
               li
                 a(href='/email/new') Compose
-              //- li.dropdown
-              //-   a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-              //-     | Dropdown
-              //-     span.caret
-              //-   ul.dropdown-menu(role='menu')
-              //-     li
-              //-       a(href='#') Action
-              //-     li
-              //-       a(href='#') Another action
-              //-     li
-              //-       a(href='#') Something else here
-              //-     li.divider
-              //-     li.dropdown-header Nav header
-              //-     li
-              //-       a(href='#') Separated link
-              //-     li
-              //-       a(href='#') One more separated link
               li
                 form(method="post", action="/sessions/" + session.id)
                   input(type="hidden", name="_method", value="delete")
-                  button(type="submit", value="Log Out")
+                  button.btn.btn-default(type="submit", value="Log Out")
             else
               li
                 a(href='/users/new') Sign Up
               li
                 a(href='/sessions/new') Log In
+              li
+                div.g-signin2(data-onsuccess="onSignIn" data-theme="dark")
 
     block content

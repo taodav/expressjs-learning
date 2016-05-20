@@ -14,7 +14,8 @@ block content
 			input.form-control(type="text", name="to", placeholder="Receiving email address")
 			input.form-control(type="text", name="subject", placeholder="Subject")
 			textarea.form-control(rows="4", name="text", placeholder="body")
-			input.btn.btn-primary(type="submit", value="Send")
+			if (session.id == "573f5e3e091dbb473c1cdfad")
+				input.btn.btn-primary(type="submit", value="Send")
 
 		//- form(action='/users', method='post')
 		//- 	p

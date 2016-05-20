@@ -1,15 +1,17 @@
 extends ../layout
 
 block content
-
-  h2 Profile:
+  br
+  br
+  h2 Your Mail
   div.container
     form.email(name="send-user", action="/mail", method="post")
       input.form-control(type="hidden", name="from", value=info.sender)
       input.form-control(type="text", name="to", placeholder="Receiving email address" value=info.receiver)
       input.form-control(type="text", name="subject", placeholder="Subject" value=info.subject)
       textarea.form-control(rows="4", name="text", placeholder="body" )= info.body
-      input.btn.btn-primary(type="submit", value="Send")
+      if (session.id == "573f5e3e091dbb473c1cdfad")
+        input.btn.btn-primary(type="submit", value="Send")
 
     //- form.email(name="send-user", action="/email", method="post")
     //-   input.btn.btn-primary(type="submit", value="Analyze Again")

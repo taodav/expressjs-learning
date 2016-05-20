@@ -88,7 +88,7 @@ router.post('/sessions', function(req, res, next) {
     console.log(docs, req.body)
     if (docs){
       req.session.id = docs.id
-      res.redirect('/')
+      res.redirect('/email/new')
     } else {
       res.render('sessions/new', {error: "Incorrect username/password combination"})
     }
