@@ -28,28 +28,29 @@ block content
                   td= name.tone_name
                   td= name.score.toFixed(2)
     hr
-    div.container
-      each val in sentences_tone
-        p Text analysis for:
-        p= val.text
-        table.table
-          thead
-            tr
-              th Tone Name
-              th Tone Score
-          tbody
-            each name in val.tone_categories[1].tones
+    if sentences_tone
+      div.container
+        each val in sentences_tone
+          p Text analysis for:
+          p= val.text
+          table.table
+            thead
               tr
-                td= name.tone_name
-                td= name.score.toFixed(2)
-            br
-            each name in val.tone_categories[0].tones
-              tr
-                td= name.tone_name
-                td= name.score.toFixed(2)
-            br
-            each name in val.tone_categories[2].tones
-              tr
-                td= name.tone_name
-                td= name.score.toFixed(2)
+                th Tone Name
+                th Tone Score
+            tbody
+              each name in val.tone_categories[1].tones
+                tr
+                  td= name.tone_name
+                  td= name.score.toFixed(2)
+              br
+              each name in val.tone_categories[0].tones
+                tr
+                  td= name.tone_name
+                  td= name.score.toFixed(2)
+              br
+              each name in val.tone_categories[2].tones
+                tr
+                  td= name.tone_name
+                  td= name.score.toFixed(2)
       hr
