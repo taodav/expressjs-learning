@@ -22,7 +22,7 @@ router.get('/email/new', function(req, res, next) {
     if (err){
       console.log(err)
     } else {
-      res.render('users/index', { email: docs.id });
+      res.render('users/index', { email: docs.email });
     }
   })
 });
@@ -50,7 +50,7 @@ router.post('/email', function(req, res, next){
       else
   // set tone equal to resulting info
       mail.tone = [tone];
-      console.log(mail.tone[0])
+      console.log(mail)
       mail.save(function(err){
         if (err){
           res.send(err)
@@ -71,6 +71,7 @@ router.get('/mail/:id', function(req, res, next){
 
 router.post('/mail', function(req, res, next){
   var data = req.body
+  console.log(data)
   sendgrid.send(data, function(err, json) {
     if (err) { return console.error(err); }
     else {res.render('emails/sent')}
