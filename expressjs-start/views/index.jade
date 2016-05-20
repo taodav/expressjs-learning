@@ -1,28 +1,10 @@
 extends layout
 
 block content
-
-	br
-	br
-	br
-	div.error
-
-	h2 Type your email below
-	div.container
-		form.email(name="send-user", action="/email", method="post")
-			input.form-control(type="email", name="from", placeholder="Your Email")
-			input.form-control(type="text", name="to", placeholder="Receiving email address")
-			input.form-control(type="text", name="subject", placeholder="Subject")
-			textarea.form-control(rows="4", name="text", placeholder="body")
-			input.btn.btn-primary(type="submit", value="Send")
-
-		//- form(action='/users', method='post')
-		//- 	p
-		//- 		label(for='user[name]') Title:
-		//- 		input(type='text', name='user[username]', placeholder='Username')
-		//- 	p
-		//- 		label(for='user[email]') Email:
-		//- 		input(type='text', name='user[email]', value='Email')
-		//- 	p
-		//- 		input(type='submit', value=title ? 'Update' : 'Register')
-
+	.jumbotron
+		.container
+			h1 Make thoughtful Emails.
+			p
+				| Send smart and thoughtfully revised emails with the power of Bluemix
+			p
+				a.btn.btn-primary.btn-lg(href='/users/new', role='button') Get Started

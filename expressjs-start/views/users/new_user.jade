@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+  h2 This is you
+  div.container
+    form.navbar-form.navbar-right(action="/users", method="post")
+      .form-group
+        input.form-control(type='text', placeholder='Email', name='email')
+      .form-group
+        input.form-control(type='text', placeholder='Username', name='username')
+      .form-group
+        input.form-control(type='password', placeholder='password', name='password')
+      button.btn.btn-success(type='submit') Sign up

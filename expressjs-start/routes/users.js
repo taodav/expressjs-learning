@@ -5,6 +5,10 @@ var User = require('../app/models/user')
 // mongoose.connect('mongodb://localhost/empMail')
 /* GET users listing. */
 
+router.get('/new', function(req, res, next) {
+    res.render('users/new', docs);
+  })
+
 router.post('/', function(req, res, next){
   var user = new User();
   user.username = req.body.username;
@@ -22,6 +26,6 @@ router.get('/:id', function(req, res, next) {
   var user = User.findOne({_id: req.params.id }, function(err, docs){
     res.render('new_email', docs);
   })
-
 })
+
 module.exports = router;
