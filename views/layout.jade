@@ -22,27 +22,39 @@ html
         #navbar.navbar-collapse.collapse
           ul.nav.navbar-nav
             li.active
-              a(href='#') Home
-            li
-              a(href='#about') Sign Up
-            li
-              a(href='#contact') Log In
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                | Dropdown
-                span.caret
-              ul.dropdown-menu(role='menu')
-                li
-                  a(href='#') Action
-                li
-                  a(href='#') Another action
-                li
-                  a(href='#') Something else here
-                li.divider
-                li.dropdown-header Nav header
-                li
-                  a(href='#') Separated link
-                li
-                  a(href='#') One more separated link
+              a(href='/') Home
+            if session.id
+              li
+                a(href='/users/' + currentUser.id) Sent
+              li
+                a(href='/mail') Drafts
+              li
+                a(href='/email') Compose
+              //- li.dropdown
+              //-   a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+              //-     | Dropdown
+              //-     span.caret
+              //-   ul.dropdown-menu(role='menu')
+              //-     li
+              //-       a(href='#') Action
+              //-     li
+              //-       a(href='#') Another action
+              //-     li
+              //-       a(href='#') Something else here
+              //-     li.divider
+              //-     li.dropdown-header Nav header
+              //-     li
+              //-       a(href='#') Separated link
+              //-     li
+              //-       a(href='#') One more separated link
+              li
+                form(method="post", action="/sessions/" + session.id)
+                  input(type="hidden", name="_method", value="delete")
+                  button(type="submit", value="Log Out")
+            else
+              li
+                a(href='/users/new') Sign Up
+              li
+                a(href='/sessions/new') Log In
 
     block content

@@ -2,10 +2,12 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
 var dotenv = require('dotenv').config();
-
+var session = require('client-sessions');
+var mongoose = require('mongoose')
+var User = require('./app/models/user')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -13,7 +15,7 @@ var users = require('./routes/users');
 // mongoose.connect('mongodb://localhost/empMail')
 
 var app = express();
-
+require('express-dynamic-helpers-patch')(app)
 //https://github.com/sebabelmar/dbc_nem_api/blob/master/app.js
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +28,21 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-// app.use(express.cookieSession())
+app.use(session({
+  cookieName: 'session',
+  secret: 'SeE3CR3ETT',
+  duration: 30*60*1000,
+  activeDuration: 5*60*1000
+}))
+
+app.dynamicHelpers({
+  session: function(req, res) {
+    return req.session
+  },
+  currentUser: function(req, res){return User.findOne({_id: req.params.id }, function(err, docs){return docs
+  })}
+})
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);

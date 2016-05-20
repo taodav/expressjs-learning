@@ -6,7 +6,7 @@ var User = require('../app/models/user')
 /* GET users listing. */
 
 router.get('/new', function(req, res, next) {
-    res.render('users/new', docs);
+    res.render('users/new');
   })
 
 router.post('/', function(req, res, next){
@@ -18,14 +18,21 @@ router.post('/', function(req, res, next){
     if (err){
       res.send(err);
     }
+    req.session.id = user._id
     res.redirect('/users/' + user.id)
   })
 })
 
 router.get('/:id', function(req, res, next) {
   var user = User.findOne({_id: req.params.id }, function(err, docs){
-    res.render('new_email', docs);
+    console.log(req.session)
+    res.render('users/index', docs);
   })
+})
+
+router.delete('/:id', function(req, res, next) {
+  req.session.destroy()
+  res.redirect('/')
 })
 
 module.exports = router;
