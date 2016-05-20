@@ -8,6 +8,8 @@ var dotenv = require('dotenv').config();
 var session = require('client-sessions');
 var mongoose = require('mongoose')
 var User = require('./app/models/user')
+mongoose.connect('mongodb://heroku_kp8zklkz:e1hg9hkkkdlpe77tr92665t86q@ds025802.mlab.com:25802/heroku_kp8zklkz')
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

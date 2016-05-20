@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router()
 var mongoose = require('mongoose')
 var Mail = require('../app/models/mail')
-mongoose.connect('mongodb://localhost/empMail')
 var api_key = process.env.API_KEY
 var domain = 'sandbox002d112a19f543c09172f4d6e517b08e.mailgun.org'
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain})
