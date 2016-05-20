@@ -1,0 +1,60 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+doctype html
+html
+  head
+    a(href='/')
+      title= title
+    link(rel="stylesheet", href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css", integrity="sha384-XXXXXXXX", crossorigin="anonymous")
+    script(src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js", integrity="sha384-XXXXXXXX", crossorigin="anonymous")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js", type)
+    script(src='/javascripts/application.js')
+
+  block body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') SmartMail
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href='/') Home
+            if session.id
+              li
+                a(href='/users/' + currentUser.id) Sent
+              li
+                a(href='/mail') Drafts
+              li
+                a(href='/email') Compose
+              //- li.dropdown
+              //-   a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+              //-     | Dropdown
+              //-     span.caret
+              //-   ul.dropdown-menu(role='menu')
+              //-     li
+              //-       a(href='#') Action
+              //-     li
+              //-       a(href='#') Another action
+              //-     li
+              //-       a(href='#') Something else here
+              //-     li.divider
+              //-     li.dropdown-header Nav header
+              //-     li
+              //-       a(href='#') Separated link
+              //-     li
+              //-       a(href='#') One more separated link
+              li
+                form(method="post", action="/sessions/" + session.id)
+                  input(type="hidden", name="_method", value="delete")
+                  button(type="submit", value="Log Out")
+            else
+              li
+                a(href='/users/new') Sign Up
+              li
+                a(href='/sessions/new') Log In
+
+    block content
