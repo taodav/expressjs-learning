@@ -16,6 +16,7 @@
     "express-dynamic-helpers-patch": "0.0.2",
     "jade": "~1.11.0",
     "jade-bootstrap": "^1.0.4",
+    "method-override": "^2.3.5",
     "mongodb": "^2.1.18",
     "morgan": "~1.6.1",
     "nodemon": "^1.9.2",

@@ -9,7 +9,7 @@ var session = require('client-sessions');
 var mongoose = require('mongoose')
 var User = require('./app/models/user')
 mongoose.connect(process.env.MONGODB_URI)
-
+var methodOverride = require('method-override')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -29,12 +29,22 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
   cookieName: 'session',
   secret: 'SeE3CR3ETT',
   duration: 30*60*1000,
   activeDuration: 5*60*1000
+}))
+
+app.use(methodOverride(function(req, res){
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method
+    delete req.body._method
+    return method
+  }
 }))
 
 app.dynamicHelpers({

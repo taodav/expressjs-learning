@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router()
 var mongoose = require('mongoose')
 var Mail = require('../app/models/mail')
+var User = require('../app/models/user')
 var api_key = process.env.API_KEY
 var domain = 'sandbox002d112a19f543c09172f4d6e517b08e.mailgun.org'
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain})
@@ -69,5 +70,33 @@ router.post('/mail', function(req, res, next){
   })
 })
 
+router.get('/sessions/new', function(req, res, next) {
+  res.render('sessions/new')
+})
+
+router.post('/sessions', function(req, res, next) {
+  var user = User.findOne({username: req.body.username, password: req.body.password}, function(docs){
+    if (docs){
+      req.sessions.id = docs.id
+      res.redirect('/')
+    } else {
+      res.render('sessions/new', {error: "Incorrect username/password combination"})
+    }
+  })
+
+})
+
+router.get('/sessions/new', function(req, res, next) {
+  console.log(req.params)
+  req.session.destroy()
+  res.redirect('/')
+  //http://mongoosejs.com/docs/validation.html
+})
+
+router.delete('/sessions/:id', function(req, res, next) {
+  console.log(req.params)
+  req.session.destroy()
+  res.redirect('/')
+})
 
 module.exports = router;

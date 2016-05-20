@@ -16,8 +16,10 @@ router.post('/', function(req, res, next){
   user.password = req.body.password;
   user.save(function(err){
     if (err){
+      console.log(err)
       res.send(err);
     }
+    console.log(user)
     req.session.id = user._id
     res.redirect('/users/' + user.id)
   })
@@ -31,7 +33,7 @@ router.get('/:id', function(req, res, next) {
 })
 
 router.delete('/:id', function(req, res, next) {
-  req.session.destroy()
+
   res.redirect('/')
 })
 
